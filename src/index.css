@@ -6,6 +6,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(to left, rgba(28, 184, 164, .8) 0% rgba(0, 128, 128, .9) 100%);
+}
+
+div{
+  white-space: pre-wrap;
 }
 
 code {

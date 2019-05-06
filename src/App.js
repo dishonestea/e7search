@@ -1,26 +1,40 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import CardList from './CardList';
+import {catalysts} from './catalysts';
+import SearchBox from './SearchBox';
+
+
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+  constructor(){
+    super()
+
+    this.state = {
+              catalysts: catalysts,
+              searchfield: ''
+                 }
+
+  }
+
+
+  onSearchChange = (event) =>   {
+    this.setState({searchfield: event.target.value})
+  }
+
+render() {
+
+  const filteredCatalysts = this.state.catalysts.filter(catalyst => {
+      return catalyst.name.toLowerCase().includes(this.state.searchfield.toLowerCase());
+  })
+
+return(
+    <div className = 'tc'>
+    <h1 className= 'f1'>Catalyst Finder</h1>
+    <SearchBox searchChange = {this.onSearchChange} />
+    <hr/>
+    <br/>
+     <CardList  catalysts= {filteredCatalysts}/>
+    </div>
     );
   }
 }
